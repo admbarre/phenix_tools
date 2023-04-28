@@ -4,25 +4,19 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 
-class PhenixGui:
-    def __init__(self):
-        # Initialize the variable to none and assign later, is this best practice?
-        self.experiment = None
-        self.root = Tk()
-        self.frame = ttk.Frame(master=self.root)
-        self.frame.grid(column=0,row=0,sticky=(N,W,E,S))
-
-        self.dir_button = ttk.Button(master=self.frame, text = "Choose experiment...", command = self.load_experiment)
-        self.dir_button.grid()
-
-        # Main loop
-        self.root.mainloop()
-
-
-    def load_experiment(self):
-        exp_dir = filedialog.askdirectory(title="test..?")
-        self.experiment = PhenixExperiment(exp_dir)
-        print(self.experiment)
+def load_exp():
+    exp_dir = filedialog.askdirectory()
+    exp = PhenixExperiment(exp_dir)
+    exp_frame = ttk.Frame(master=root).grid()
+    title_label = ttk.Label(master=exp_frame,text=exp.exp_title).grid()
 
 if __name__ == "__main__":
-    gui = PhenixGui()
+    running = True
+    root = Tk()
+    frame = ttk.Frame(master=root).grid()
+    dir_button = ttk.Button(master=root,text="Choose experiment dir...",command=load_exp).grid()
+
+
+    while running:
+        root.update_idletasks()
+        root.update()
