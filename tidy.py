@@ -2,14 +2,15 @@ import os
 import shutil
 import sys
 
-def tidy(tidy_dir,dry_run=True):
+def tidy(tidy_dir,depth=1,dry_run=True):
     files = [f for f in os.listdir(tidy_dir) if f.endswith(".avi") and not f.startswith(".")]
     for f in files:
         filename,ext = f.split(".")
         cell,gfp,well,field = filename.split("_")
+        levels = [cell,gfp,well,field]
+        selected_depth = "/".join(levels[:depth])
 
-        # TODO: maybe add an argument to decide what level of directories?
-        new_dir = f"{tidy_dir}/{cell}"
+        new_dir = f"{tidy_dir}/{selected_depth}"
         new_path = f"{new_dir}/{f}"
         old_path = f"{tidy_dir}/{f}"
         if dry_run:
@@ -23,7 +24,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         _,tidy_dir = sys.argv
         dry_run = False if input("Dry run? [y/n]").lower() in ["n","no"] else True
-        tidy(tidy_dir,dry_run)
+        depth = int(input("Depth? [1 = cell, 2 = gfp, 3 = well, 4 = field]"))
+        tidy(tidy_dir,depth,dry_run)
     else:
         print("Usage: python tidy.py <directory path>")
 
