@@ -2,6 +2,7 @@ import os
 import shutil
 import sys
 
+# TODO: add a undo button LMAO, had to write flatten script to fix a mistake
 def tidy(tidy_dir,depth=1,dry_run=True):
     files = [f for f in os.listdir(tidy_dir) if f.endswith(".avi") and not f.startswith(".")]
     for f in files:
