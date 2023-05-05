@@ -18,7 +18,7 @@ def extract(movies_dir,dry_run=True):
             csv_dir = f"{gfp_dir}/csvs"
             roi_dir = f"{gfp_dir}/rois"
             files = [f for f in os.listdir(gfp_dir) if not f in
-                     ["rois","csvs"]]
+                     ["rois","csvs"] and not f.startswith(".")]
             old_files = [f"{gfp_dir}/{f}" for f in files]
             new_files = [f"{cam_dir}/{f}" for f in files]
 
