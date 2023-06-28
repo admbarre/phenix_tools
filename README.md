@@ -1,7 +1,7 @@
 # phenix_tools
 Set of tools to more easily interact with imaging experiments carried out on Opera Phenix microscope platform.
 
-# Usage
+# Usage (import module into Jupyter Notebook)
 - Provide the top level experiment directory
 - Inspect the summarized details by printing the experiment
 <img width="563" alt="sumary" src="https://github.com/admbarre/phenix_tools/assets/7918190/51dd6b6e-a63c-4791-9d5d-db18e68f6af9">
